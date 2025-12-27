@@ -1,0 +1,8 @@
+{
+  "name": "Network by MNA Studios",
+  "description": "An elite incubation program designed to transform individuals from creators into high-impact entrepreneurs.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
