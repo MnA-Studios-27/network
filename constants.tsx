@@ -35,7 +35,7 @@ export const CREATOR_COHORT = [
     agency: "AnM Studios",
     agencyHandle: "anmstudios",
     description: "Architecting elite recording environments specifically for the next generation of independent rappers.",
-    image: "public/images/Rohan_Azad.jpeg",
+    image: "/images/Rohan_Azad.jpeg",
     role: "Hip-Hop Infrastructure",
     instagram: "https://www.instagram.com/iamrdyno?igsh=MWFzMjZtbTQ3eWM4dw%3D%3D&utm_source=qr",
     second_link: "https://www.instagram.com/anm_studioss?igsh=emoxNzdvMHg1ZzNr"
@@ -46,7 +46,7 @@ export const CREATOR_COHORT = [
     agency: "Verse Studios",
     agencyHandle: "verse.studios",
     description: "Developing original sonic identities and creative jingles for global brands, commercials, and B2B giants.",
-    image: "public/images/Harshal_Kalpit_Mathur.jpeg",
+    image: "/images/Harshal_Kalpit_Mathur.jpeg",
     role: "Sonic Branding",
     second_link: "https://www.instagram.com/versestudios_?igsh=MTlkcWZvdXRlam83Yg=="
   },
@@ -56,7 +56,7 @@ export const CREATOR_COHORT = [
     agency: "Algorhythm",
     agencyHandle: "algorhythm.music",
     description: "Building a recommendation powerhouse and playlist curation ecosystem for the global indie music scene.",
-    image: "public/images/Palak_Yogi.PNG",
+    image: "/images/Palak_Yogi.PNG",
     role: "Indie Curation",
     instagram: "https://www.instagram.com/palakyogi__?igsh=bHVzbDA1dzg4MnA0",
     second_link: "https://www.instagram.com/algo.rhythm__?igsh=ZDNocmVxOWJ3eHcz"
