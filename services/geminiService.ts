@@ -24,7 +24,7 @@ Example: "If you love storytelling, we can pivot from a Narrative Creator into a
 export class GeminiService {
   async generatePathfinderResponse(userPrompt: string) {
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
       const model = ai.getGenerativeModel({ 
         model: 'gemini-2.0-flash-lite',
         systemInstruction: SYSTEM_INSTRUCTION
