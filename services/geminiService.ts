@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const SYSTEM_INSTRUCTION = `
 You are the Network Pathfinder AI by MNA Studios.
@@ -24,9 +24,9 @@ Example: "If you love storytelling, we can pivot from a Narrative Creator into a
 export class GeminiService {
   async generatePathfinderResponse(userPrompt: string) {
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const model = ai.getGenerativeModel({ 
-        model: 'gemini-2.0-flash-lite',
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+      const model = genAI.getGenerativeModel({ 
+        model: 'gemini-2.0-flash-exp',
         systemInstruction: SYSTEM_INSTRUCTION
       });
 
@@ -40,7 +40,7 @@ export class GeminiService {
         },
       });
 
-      const response = await result.response;
+      const response = result.response;
       return response.text() || "Connection lost. Re-syncing vision...";
     } catch (error) {
       console.error("Gemini Error:", error);
