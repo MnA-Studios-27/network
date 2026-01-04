@@ -1,5 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
 const SYSTEM_INSTRUCTION = `
 You are the Network Pathfinder AI by MNA Studios.
 Our mission: Helping people find what they love and turning that into a Dreamer → Creator → Service → Product empire.
@@ -22,28 +20,72 @@ Example: "If you love storytelling, we can pivot from a Narrative Creator into a
 `;
 
 export class GeminiService {
+  private lastRequestTime: number = 0;
+  private minRequestInterval: number = 2000; // 2 seconds between requests
+
+  private async delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   async generatePathfinderResponse(userPrompt: string) {
     try {
-      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
-      const model = genAI.getGenerativeModel({ 
-        model: 'gemini-2.0-flash-exp',
-        systemInstruction: SYSTEM_INSTRUCTION
-      });
+      const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '';
+      
+      if (!apiKey || apiKey === 'your_openrouter_api_key_here') {
+        return "API key not configured. Please add your OpenRouter API key to continue.";
+      }
 
-      const result = await model.generateContent({
-        contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-        generationConfig: {
-          temperature: 0.8,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 200,
+      // Rate limiting: ensure minimum time between requests
+      const now = Date.now();
+      const timeSinceLastRequest = now - this.lastRequestTime;
+      if (timeSinceLastRequest < this.minRequestInterval) {
+        await this.delay(this.minRequestInterval - timeSinceLastRequest);
+      }
+      this.lastRequestTime = Date.now();
+
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.origin,
+          'X-Title': 'Network by MNA Studios'
         },
+        body: JSON.stringify({
+          model: 'meta-llama/llama-3.2-3b-instruct:free',
+          messages: [
+            {
+              role: 'system',
+              content: SYSTEM_INSTRUCTION
+            },
+            {
+              role: 'user',
+              content: userPrompt
+            }
+          ],
+          temperature: 0.8,
+          max_tokens: 200,
+          top_p: 0.95,
+        })
       });
 
-      const response = result.response;
-      return response.text() || "Connection lost. Re-syncing vision...";
+      if (response.status === 429) {
+        return "Taking a moment to process... Our AI is receiving high traffic. Please wait a few seconds and try again.";
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('API Error:', response.status, errorData);
+        return "Connection temporarily unavailable. The pathfinder is recalibrating—try again in a moment.";
+      }
+
+      const data = await response.json();
+      return data.choices[0]?.message?.content || "Connection lost. Re-syncing vision...";
     } catch (error) {
-      console.error("Gemini Error:", error);
+      console.error("OpenRouter Error:", error);
+      if (error instanceof Error && error.message.includes('fetch')) {
+        return "Network connection lost. Check your internet and try again.";
+      }
       return "The signal is weak. Ensure your vision is clear and try again.";
     }
   }
