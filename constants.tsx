@@ -53,13 +53,13 @@ export const CREATOR_COHORT = [
   {
     name: "Palak Yogi",
     handle: "palakyogi",
-    agency: "Algorhythm",
-    agencyHandle: "algorhythm.music",
+    agency: "Root",
+    agencyHandle: "rootby.u",
     description: "Building a recommendation powerhouse and playlist curation ecosystem for the global indie music scene.",
     image: "/images/Palak_Yogi.PNG",
     role: "Indie Curation",
     instagram: "https://www.instagram.com/palakyogi__?igsh=bHVzbDA1dzg4MnA0",
-    second_link: "https://www.instagram.com/algo.rhythm__?igsh=ZDNocmVxOWJ3eHcz"
+    second_link: "https://www.instagram.com/rootby.u?igsh=N2d4OW5rbGVqdzh3"
   
   }
 ];
