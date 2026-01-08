@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
           transition={{ delay: 0.8, duration: 1 }}
           className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light drop-shadow-md"
         >
-          We transform high-potential individuals into founders of multi-million dollar agencies and tech-driven products. The total incubation solution.
+          We transform high-potential individuals into founding creators of multi-million dollar agencies and tech-driven products. The total incubation solution.
         </motion.p>
         
         <motion.div 
