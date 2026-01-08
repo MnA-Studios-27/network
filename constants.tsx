@@ -59,7 +59,7 @@ export const CREATOR_COHORT = [
     image: "/images/Palak_Yogi.PNG",
     role: "Indie Curation",
     instagram: "https://www.instagram.com/palakyogi__?igsh=bHVzbDA1dzg4MnA0",
-    second_link: "https://www.instagram.com/rootby.u?igsh=N2d4OW5rbGVqdzh3"
+    second_link: "https://www.instagram.com/rootby.u?"
   
   }
 ];
